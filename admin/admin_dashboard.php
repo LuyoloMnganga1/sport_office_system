@@ -47,7 +47,7 @@
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
 							Welcome back <div class="weight-600 font-30 text-blue"><?php echo $row['FirstName']. " " .$row['LastName']; ?>,</div>
 						</h4>
-						<p class="font-18 max-width-600">you are in an institution established to serve the wider Christian community in Ghana and Africa.</p>
+						<p class="font-18 max-width-600">It's wonderful to have you visit the sport indemnity management system.</p>
 					</div>
 				</div>
 			</div>
@@ -87,13 +87,13 @@
 						$query->bindParam(':status',$status,PDO::PARAM_STR);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$leavecount=$query->rowCount();
+						$appcount=$query->rowCount();
 						?>        
 
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($leavecount); ?></div>
-								<div class="font-14 text-secondary weight-500">Approved Leave</div>
+								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($appcount); ?></div>
+								<div class="font-14 text-secondary weight-500">Approved Applications</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#09cc06"><span class="icon-copy fa fa-hourglass"></span></div>
@@ -111,13 +111,13 @@
 						$query->bindParam(':status',$status,PDO::PARAM_STR);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$leavecount=$query->rowCount();
+						$appcount=$query->rowCount();
 						?>        
 
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo($leavecount); ?></div>
-								<div class="font-14 text-secondary weight-500">Pending Leave</div>
+								<div class="weight-700 font-24 text-dark"><?php echo($appcount); ?></div>
+								<div class="font-14 text-secondary weight-500">Pending Applications</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon"><i class="icon-copy fa fa-hourglass-end" aria-hidden="true"></i></div>
@@ -135,13 +135,13 @@
 						$query->bindParam(':status',$status,PDO::PARAM_STR);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$leavecount=$query->rowCount();
+						$appcount=$query->rowCount();
 						?>  
 
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo($leavecount); ?></div>
-								<div class="font-14 text-secondary weight-500">Rejected Leave</div>
+								<div class="weight-700 font-24 text-dark"><?php echo($appcount); ?></div>
+								<div class="font-14 text-secondary weight-500">Rejected Applications</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#ff5b5b"><i class="icon-copy fa fa-hourglass-o" aria-hidden="true"></i></div>
