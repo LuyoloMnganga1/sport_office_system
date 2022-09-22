@@ -203,7 +203,8 @@ button#clear span {
                 <div class="col-auto">
                     <input type="datetime-local" name="signed_date" require="true" class="form-control" aria-describedby="passwordHelpInline">
                 </div>
-                <p><br></p>
+                <!-- <p><br></p> -->
+                <div class="col-auto"></div>
                 <div class="col-auto">
                     <label for="inputPassword6" class="col-form-label">Signature:</label>
                 </div>
