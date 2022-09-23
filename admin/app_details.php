@@ -191,9 +191,9 @@ if(isset($_POST['update']))
 														</div>
 														<div class="weight-500 col-md-6">
 															<div class="form-group">
-																<label>Signing Date</label>
+																<label>Application Submition Date</label>
 																<div class="input-group">
-                                                                    <input type="text" name="signed_date" class="form-control" readonly value="<?php echo $row['signed_date']; ?>">
+                                                                    <input type="text" name="signed_date" class="form-control" readonly value="<?php echo $row['created_at']; ?>">
                                                                 </div>
 															</div>
 														</div>

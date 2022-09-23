@@ -107,7 +107,7 @@ button#clear span {
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="inputPassword6" class="col-form-label">Student Number:</label>
-                        <input type="text" class="form-control" name="student_number" require="true" pattern="[0-9]{9}"  placeholder="Enter your student number">
+                        <input type="text" class="form-control" name="student_number" id="student_number" require="true" onchange="checkInp()" pattern="[0-9]{9}"  placeholder="Enter your student number">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -148,7 +148,7 @@ button#clear span {
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="inputPassword6" class="col-form-label">Contact Number:</label>
-                        <input type="text" name="phone_number"  placeholder="Enter your phone number e.g 0811234567" pattern="[0-9]{10}"  class="form-control"  require="true">
+                        <input type="text" name="phone_number" onchange="checkPhone1()" id="phone_number"  placeholder="Enter your phone number e.g 0811234567" pattern="[0-9]{10}"  class="form-control"  require="true">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -160,7 +160,7 @@ button#clear span {
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="inputPassword6" class="col-form-label">Next of Kin Contact Number:</label>
-                        <input type="text" name="next_of_kin_phone"  class="form-control" placeholder="Enter your next of kin phone number e.g 0811234567" pattern="[0-9]{10}" require="true">
+                        <input type="text" name="next_of_kin_phone" id="next_of_kin_phone" onchange="checkPhone2()" class="form-control" placeholder="Enter your next of kin phone number e.g 0811234567" pattern="[0-9]{10}" require="true">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -186,7 +186,7 @@ button#clear span {
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="inputPassword6" class="col-form-label">Medical Aid Number:</label>
-                        <input type="text" name="medical_aid_number"  class="form-control" placeholder="Enter your medical aid number e.g 0811234567" pattern="[0-9]{10}">
+                        <input type="text" name="medical_aid_number" id="medical_aid_number" onchange="checkPhone()"  class="form-control" placeholder="Enter your medical aid number e.g 0811234567" pattern="[0-9]{10}">
                     </div>
                 </div>
                 <p><br></p>              
@@ -212,7 +212,7 @@ button#clear span {
                 <div class="col-auto">
                         <div class="flex-row">
                             <div class="wrapper">
-                                <canvas id="signature-pad" width="400" height="200"></canvas>
+                                <canvas id="signature-pad" require="true"  width="500" height="180"></canvas>
                             </div>
                             <div class="clear-btn">
                                 <button id="clear"><span> Clear </span></button>
@@ -274,6 +274,71 @@ function validateID() {
   }
 //   alert(theIDnumber + " a valid ID number");
   return false;
+}
+</script>
+<script>
+    function checkInp()
+{
+  var x=document.getElementById("student_number").value;
+  if (isNaN(x)) 
+  {
+    alert("Student Number must be numeric");
+    document.getElementById("student_number").value ="";
+    return false;
+  }
+  if (x.length !== 9) {
+    alert("Student Number must be 9 digits");
+    document.getElementById("student_number").value="";
+    return false;
+ }
+}
+</script>
+<script>
+     function checkPhone1()
+{
+    var phone = document.getElementById("phone_number").value;
+    if (phone.length !== 10) {
+    alert(" Contact Number must be 10 digits");
+    document.getElementById("phone_number").value ="";
+    return false;
+    }
+      if ((phone.startsWith('0') == false || x.startsWith(0) == false)) {
+    alert(" Contact Number must start with 0");
+    document.getElementById("phone_number").value ="";
+    return false;
+    }
+}
+</script>
+<script>
+     function checkPhone2()
+{
+    var phone = document.getElementById("next_of_kin_phone").value;
+    if (phone.length !== 10) {
+    alert(" Contact Number must be 10 digits");
+    document.getElementById("next_of_kin_phone").value="";
+    return false;
+    }
+      if ((phone.startsWith('0') == false || x.startsWith(0) == false)) {
+    alert(" Contact Number must start with 0");
+    document.getElementById("next_of_kin_phone").value="";
+    return false;
+    }
+}
+</script>
+<script>
+     function checkPhone()
+{
+    var phone = document.getElementById("medical_aid_number").value;
+    if (phone.length !== 10) {
+    alert(" Contact Number must be 10 digits");
+    document.getElementById("medical_aid_number").value="";
+    return false;
+    }
+    if ((phone.startsWith('0') == false || x.startsWith(0) == false)) {
+    alert(" Contact Number must start with 0");
+    document.getElementById("medical_aid_number").value="";
+    return false;
+    }
 }
 </script>
 </form>
