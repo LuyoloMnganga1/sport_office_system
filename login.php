@@ -77,7 +77,7 @@ if(isset($_POST['signin']))
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
 				<a href="login.php">
-					<img src="vendors/images/logo.png" style="height: 100%;" alt="">
+					<img src="vendors/images/logo2.jpg" alt="">
 				</a>
 			</div>
 		</div>
