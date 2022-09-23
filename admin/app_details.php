@@ -197,11 +197,12 @@ if(isset($_POST['update']))
                                                                 </div>
 															</div>
 														</div>
-														<!-- <div class="weight-500 col-md-6">
+														<!-- <div class="col-md-6">
 															<div class="form-group">
 																<label>Signature</label>
 																<div class="input-group">
-																<canvas id="signature-pad" width="400" height="200"><?php echo $row['signature']; ?></canvas>
+																<img id="sig-image" src="" alt="Your signature will go here!"/>
+															 <canvas id="signature-pad" width="400" height="200"><?php echo $row['signature']; ?></canvas>
 																</div>
 															</div>
 														</div> -->
@@ -262,7 +263,16 @@ if(isset($_POST['update']))
 		</div>
 	</div>
 	<!-- js -->
-
 	<?php include('includes/scripts.php')?>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$( document ).ready(function() {
+			var signiture = "<?php echo $row['signature']; ?>";
+			// alert(signiture);
+			$("#sig-image").attr("src", signiture);
+			// sigImage.setAttribute("src", dataUrl);
+		
+		});
+	</script>
 </body>
 </html>

@@ -11,6 +11,7 @@ require 'vendor/autoload.php';
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 $user_mail =$row['student_number']."mywsu.ac.za";
+			
 			try {
 				//Server settings
 				$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
@@ -36,13 +37,13 @@ $user_mail =$row['student_number']."mywsu.ac.za";
 			
 				//Content
 				$mail->isHTML(true);                                  //Set email format to HTML
-				$mail->Subject = 'Sport Indemnity Application Approved';
-				$mail->Body    = "Good day ".$row['full_name'].", \n Please be aware that the will be trials for ".$row['sport_code']." on Tuesday afternoon at Potsdam playground.";
-				$mail->AltBody = "Good day student, \n Please be aware that the will be trials for your sport code on Tuesday afternoon at Potsdam playground.";
+				$mail->Subject = 'Sport Indemnity Application Rejected';
+				$mail->Body    = "Good day ".$row['full_name'].", \n Please be aware that you don't make it for trials of ".$row['sport_code'].".";
+				$mail->AltBody = "Good day student, \n Please be aware that you don't make it for your sport code.";
 			
 				$mail->send();
 				echo 'Message has been sent';
 			} catch (Exception $e) {
 				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-			}		
+			}
 ?>
