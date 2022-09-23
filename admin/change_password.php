@@ -73,7 +73,7 @@ if(isset($_POST['new_update']))
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-30">
 						<div class="card-box height-100-p overflow-hidden">
 							<div class="profile-tab height-100-p">
 								<div class="tab height-100-p">

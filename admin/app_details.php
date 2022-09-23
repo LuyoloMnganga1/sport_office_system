@@ -1,69 +1,103 @@
-<?php error_reporting(0);?>
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
-
+<?php include('phpmailer.php')?>
 <?php
-	$appid=($_GET['appid']);  
-	// code for action taken on application
-	if(isset($_POST['update']))
-	{  
-		$full_name=$_POST['full_name'];
-		$student_number=$_POST['student_number'];
-		$sport_code=$_POST['sport_code'];
-		$course=$_POST['course'];
-		$address=$_POST['address'];
-		$id_number=$_POST['id_number'];
-		$phone_number=$_POST['phone_number'];
-		$next_of_kin_name=$_POST['next_of_kin_name'];
-		$next_of_kin_phone=$_POST['next_of_kin_phone'];
-		$medical_condition=$_POST['medical_condition'];
-		$medical_details=$_POST['medical_details'];
-		$medical_aid_name=$_POST['medical_aid_name'];
-		$medical_aid_number=$_POST['medical_aid_number'];
-		$signed_date=$_POST['signed_date'];
-		$signature=$_POST['signature'];
-		$created_at=date('Y-m-d H:i:s', time());
-		$updated_at=date('Y-m-d H:i:s', time());
-		
-				// $result = mysqli_query($conn,"UPDATE tblapp SET id='[value-1]',full_name='[value-2]',student_number='[value-3]',sport_code='[value-4]',course='[value-5]',address='[value-6]',id_number='[value-7]',phone_number='[value-8]',next_of_kin_name='[value-9]',next_of_kin_phone='[value-10]',medical_condition='[value-11]',medical_details='[value-12]',medical_aid_name='[value-13]',medical_aid_number='[value-14]',signed_date='[value-15]',signature='[value-16]',status='[value-17]',created_at='[value-18]',updated_at='[value-19]' WHERE id='$appid'");
 
-				// if ($result) {
-			    //  	echo "<script>alert('Leave updated Successfully');</script>";
-				// 	} else{
-				// 	  die(mysqli_error());
-				//    }
+$appid =($_GET['appid']);
+
+if(isset($_POST['update']))
+{
+	$status=$_POST['status'];
+	$updated_at=date('Y-m-d H:i:s', time());
+
+	$result = mysqli_query($conn,"update tblapp set status='$status', updated_at='$updated_at' where id='$appid'")or die(mysqli_error());
+	if ($result) {
+		$query = mysqli_query($conn,"select * from tblapp where id = '$appid' ")or die(mysqli_error());
+		$row = mysqli_fetch_array($query);
+		$user_mail =$row['student_number']."mywsu.ac.za";
 		
+		if($status==1){
+			try {
+				//Server settings
+				$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+				$mail->isSMTP();                                            //Send using SMTP
+				$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+				$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+				$mail->Username   = 'user@example.com';                     //SMTP username
+				$mail->Password   = 'secret';                               //SMTP password
+				$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+				$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+			
+				//Recipients
+				$mail->setFrom('from@example.com', 'Mailer');
+				$mail->addAddress($user_mail, 'Joe User');     //Add a recipient
+				$mail->addAddress('ellen@example.com');               //Name is optional
+				$mail->addReplyTo('info@example.com', 'Information');
+				$mail->addCC('cc@example.com');
+				$mail->addBCC('bcc@example.com');
+			
+				//Attachments
+				// $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+				// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+			
+				//Content
+				$mail->isHTML(true);                                  //Set email format to HTML
+				$mail->Subject = 'Sport Indemnity Application Approved';
+				$mail->Body    = "Good day ".$row['full_name'].", \n Please be aware that the will be trials for ".$row['sport_code']." on Tuesday afternoon at Potsdam playground.";
+				$mail->AltBody = "Good day student, \n Please be aware that the will be trials for your sport code on Tuesday afternoon at Potsdam playground.";
+			
+				$mail->send();
+				echo 'Message has been sent';
+			} catch (Exception $e) {
+				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+			}
+		}
+		if($status==2){
+			try {
+				//Server settings
+				$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+				$mail->isSMTP();                                            //Send using SMTP
+				$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+				$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+				$mail->Username   = 'user@example.com';                     //SMTP username
+				$mail->Password   = 'secret';                               //SMTP password
+				$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+				$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+			
+				//Recipients
+				$mail->setFrom('from@example.com', 'Mailer');
+				$mail->addAddress($user_mail, 'Joe User');     //Add a recipient
+				$mail->addAddress('ellen@example.com');               //Name is optional
+				$mail->addReplyTo('info@example.com', 'Information');
+				$mail->addCC('cc@example.com');
+				$mail->addBCC('bcc@example.com');
+			
+				//Attachments
+				// $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+				// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+			
+				//Content
+				$mail->isHTML(true);                                  //Set email format to HTML
+				$mail->Subject = 'Sport Indemnity Application Rejected';
+				$mail->Body    = "Good day ".$row['full_name'].", \n Please be aware that you don't make it for trials of ".$row['sport_code'].".";
+				$mail->AltBody = "Good day student, \n Please be aware that you don't make it for your sport code.";
+			
+				$mail->send();
+				echo 'Message has been sent';
+			} catch (Exception $e) {
+				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+			}
+		}
+
+		echo "<script>alert('Application Status has been Successfully Updated');</script>";
+		echo "<script type='text/javascript'> document.location = 'admin_dashboard.php'; </script>";
+	} else{
+	die(mysqli_error());
 	}
+
+}
+
 ?>
-
-<style>
-	input[type="text"]
-	{
-	    font-size:16px;
-	    color: #0f0d1b;
-	    font-family: Verdana, Helvetica;
-	}
-
-	.btn-outline:hover {
-	  color: #fff;
-	  background-color: #524d7d;
-	  border-color: #524d7d; 
-	}
-
-	textarea { 
-		font-size:16px;
-	    color: #0f0d1b;
-	    font-family: Verdana, Helvetica;
-	}
-
-	textarea.text_area{
-        height: 8em;
-        font-size:16px;
-	    color: #0f0d1b;
-	    font-family: Verdana, Helvetica;
-      }
-
-	</style>
 
 <body>
 	<div class="pre-loader">
@@ -86,209 +120,219 @@
 
 	<div class="mobile-menu-overlay"></div>
 
+	<div class="mobile-menu-overlay"></div>
+
 	<div class="main-container">
-		<div class="pd-ltr-20">
+		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
 				<div class="page-header">
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-12 col-sm-12">
 							<div class="title">
-								<h4>APPLICATION DETAILS</h4>
+							<h4>APPLICATION DETAILS</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="admin_dashboard.php">Home</a></li>
+									<li class="breadcrumb-item"><a href="admin_dashboard">Dashboard</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Applications</li>
 								</ol>
 							</nav>
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-30">
+						<div class="card-box height-100-p overflow-hidden">
+							<div class="profile-tab height-100-p">
+								<div class="tab height-100-p">
+									<ul class="nav nav-tabs customtab" role="tablist">
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#setting" role="tab">Application Details</a>
+										</li>
+									</ul>
+									<div class="tab-content">
+										<!-- application Tab start -->
+										<?php
+											$query = mysqli_query($conn,"select * from tblapp where id = '$appid' ")or die(mysqli_error());
+											$row = mysqli_fetch_array($query);
+										?>
+									<div class="tab-pane active height-100-p" id="setting" role="tabpanel">
+											<div class="profile-setting">
+													<div class="profile-edit-list row">
+														<div class="col-md-12"><h4 class="text-blue h5 mb-20">Update the application status</h4></div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Full Name</label>
+															     <div class="input-group">
+                                                                    <input type="text" name="full_name" class="form-control" readonly value="<?php echo $row['full_name']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Student Number</label>
+																<div class="input-group">
+                                                                    <input type="text" name="student_number" class="form-control" readonly value="<?php echo $row['student_number']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Sport Code </label>
+																<div class="input-group">
+                                                                    <input type="text" name="sport_code" class="form-control" readonly value="<?php echo $row['sport_code']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Course</label>
+																<div class="input-group">
+                                                                    <input type="text" name="course" class="form-control" readonly value="<?php echo $row['course']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Studing Address</label>
+																<div class="input-group">
+                                                                    <input type="text" name="address" class="form-control" readonly value="<?php echo $row['address']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>ID Number</label>
+																<div class="input-group">
+                                                                    <input type="text" name="id_number" class="form-control" readonly value="<?php echo $row['id_number']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Phone Number</label>
+																<div class="input-group">
+                                                                    <input type="text" name="phone_number" class="form-control" readonly value="<?php echo $row['phone_number']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Next of Kin Name</label>
+																<div class="input-group">
+                                                                    <input type="text" name="next_of_kin_name" class="form-control" readonly value="<?php echo $row['next_of_kin_name']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Next of Kin Phone</label>
+																<div class="input-group">
+                                                                    <input type="text" name="next_of_kin_phone" class="form-control" readonly value="<?php echo $row['next_of_kin_phone']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Medical Condition</label>
+																<div class="input-group">
+                                                                    <input type="text" name="medical_condition" class="form-control" readonly value="<?php echo $row['medical_condition']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Pertinent information concerning your medical condition</label>
+																<div class="input-group">
+                                                                    <input type="text" name="medical_details" class="form-control" readonly value="<?php echo $row['medical_details']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Medical Aid Name</label>
+																<div class="input-group">
+                                                                    <input type="text" name="medical_aid_name" class="form-control" readonly value="<?php echo $row['medical_aid_name']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Medical Aid Number</label>
+																<div class="input-group">
+                                                                    <input type="text" name="medical_aid_number" class="form-control" readonly value="<?php echo $row['medical_aid_number']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Signing Date</label>
+																<div class="input-group">
+                                                                    <input type="text" name="signed_date" class="form-control" readonly value="<?php echo $row['signed_date']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<!-- <div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Signature</label>
+																<div class="col-md-4 user-icon" style="background-color: lightgray;">
+																	<img src="<?php echo $row['signature']; ?>" alt="">
+																</div>
+															</div>
+														</div> -->
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
+																<label></label>
+																<div class="modal-footer justify-content-center">
+																	<button class="btn btn-primary" name="new_update" data-toggle="modal" data-target="#exampleModal">Update</button>
+																</div>
+															</div>
+														</div>
+								
+														
+															<!-- Modal -->
+															<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered" role="document">
+																<div class="modal-content">
+																	<form action="" method="POST">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLabel">Update Application Status</h5>
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																	</button>
+																</div>
+																<div class="modal-body">
+																<div class="form-group">
+																	<label for="exampleSelect">Application Status</label>
+																	<select class="form-control" id="exampleSelect" name="status" required>
+																	<option  selected>select status</option>
+																	<option value="1">Approve</option>
+																	<option value="2">Reject</option>
+																	<option value="0">Pending</option>
+																	</select>
+																</div>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																	<button type="submit" name="update" class="btn btn-primary">Save changes</button>
+																</div>
+																</form>
+																</div>
+															</div>
+															</div>
+														</div>
 
-				<div class="pd-20 card-box mb-30">
-					<div class="clearfix">
-						<div class="pull-left">
-							<h4 class="text-blue h4">Application Details</h4>
-							<p class="mb-20"></p>
-						</div>
-					</div>
-					<form method="post" action="">
-
-						<?php 
-						if(!isset($_GET['appid']) && empty($_GET['appid'])){
-							header('Location: admin_dashboard.php');
-						}
-						else {
-						
-						$appid=($_GET['appid']);
-						$sql = "SELECT * from tblapp where id=:status";
-						$query = $dbh -> prepare($sql);
-						$query->bindParam(':appid',$appid,PDO::PARAM_STR);
-						$query->execute();
-						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$cnt=1;
-						if($query->rowCount() > 0)
-						{
-						foreach($results as $result)
-						{         
-						?>  
-
-						<div class="row">
-						<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Name &amp; Surname:</label>
-							<input type="text" class="form-control" name="full_name" require="true" placeholder="Enter your name and surname" value="">
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Student Number:</label>
-							<input type="text" class="form-control" name="student_number" require="true" pattern="[0-9]{9}"  placeholder="Enter your student number">
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Sport Code:</label>
-							<select class="form-select" aria-label="Default select example" name="sport_code" require="true"> 
-								<option selected>Select sport code</option>
-								<option value="Chess">Chess</option>
-								<option value="Table tennis">Table tennis</option>
-								<option value="Aerobics">Aerobics</option>
-								<option value="Boxing">Boxing</option>
-								<option value="Pool">Pool</option>
-								<option value="Ultimate Frisbee">Ultimate Frisbee</option>
-								<option value="Tennis">Tennis</option>
-								<option value="Handball">Handball</option>
-								<option value="Softball">Softball</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Instructional Program (Course):</label>
-							<input type="text" name="course"  class="form-control"  require="true" placeholder="Enter your course">
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Address While Studying:</label>
-							<input type="text" name="address"  class="form-control"  require="true" placeholder="Enter your study address">
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Identity Number:</label>
-							<input type="text" name="id_number"  class="form-control" placeholder="Enter your ID Number" pattern="[0-9]{13}"  require="true">
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Contact Number:</label>
-							<input type="text" name="phone_number"  placeholder="Enter your phone number e.g 0811234567" pattern="[0-9]{10}"  class="form-control"  require="true">
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Next of Kin (Name &amp; Surname):</label>
-							<input type="text" name="next_of_kin_name"  class="form-control" placeholder="Enter your next of kin full name"  require="true">
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Next of Kin Contact Number:</label>
-							<input type="text" name="next_of_kin_phone"  class="form-control" placeholder="Enter your next of kin phone number e.g 0811234567" pattern="[0-9]{10}" require="true">
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Medical Condition:</label>
-							<input type="text" name="medical_condition"  class="form-control" placeholder="Enter your medical condition">
-						</div>
-					</div>
-					<p><br></p>
-					<p class="mt-2">Any pertinent information concerning your medical condition?</p>
-					<div class="col-lg-7">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">if so please give details:</label>
-							<input type="text" name="medical_details"  class="form-control" placeholder="Enter your details">
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Medical Aid Name:</label>
-							<input type="text" name="medical_aid_name"  class="form-control" placeholder="Enter your medical aid name">
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="inputPassword6" class="col-form-label">Medical Aid Number:</label>
-							<input type="text" name="medical_aid_number"  class="form-control" placeholder="Enter your medical aid number e.g 0811234567" pattern="[0-9]{10}">
-						</div>
-					</div>
-					<p><br></p>              
-					<p>I hereby concert to my participation in all games and tournaments tours, trips, sporting excursions arranged by WSU and /or conducted under its authority.</p><br>
-					<p>Whilst it is recognized that this institution will take every precaution to ensure the safety and well-being of its students. I hereby indemnify and hold blameless this institution, its staff, and other agents against all claims which may arise in consequence of death of or any injury sustained by myself during the course of such sporting event, from whatsoever nature attributed to this institution, save that liability shall not be excluded under indemnity for loss occasioned by a deliberate act of wilful misconduct attributed to the University.</p>
-				   <br>
-					<p>I the event of me being injured I hereby authorize the University, its staff, and other agents to procure such medical treatment/surgery as may its/their absolute discretion be deemed necessary. I undertake to indemnity the University, its staff, and other agents from all medical and hospital costs occasioned thereby.</p>
-					<p><br></p>   
-					</div>
-					<div class="row g-3 align-items-center">
-					<div class="col-auto">
-						<label for="inputPassword6" class="col-form-label">Signed at East London, on :</label>
-					</div>
-					<div class="col-auto">
-						<input type="datetime-local" name="signed_date" require="true" class="form-control" aria-describedby="passwordHelpInline">
-					</div>
-					<p><br></p>
-					<div class="col-auto">
-						<label for="inputPassword6" class="col-form-label">Signature:</label>
-					</div>
-					<input type="hidden" name="signature" id="signature">
-					<div class="col-auto">
-							<div class="flex-row">
-								<div class="wrapper">
-									<canvas id="signature-pad" width="400" height="200"></canvas>
-								</div>
-								<div class="clear-btn">
-									<button id="clear"><span> Clear </span></button>
-								</div>
-							</div>
-					</div>
-							
-							<form name="adminaction" method="post">
-  								<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-									<div class="modal-dialog modal-dialog-centered" role="document">
-										<div class="modal-content">
-											<div class="modal-body text-center font-18">
-												<h4 class="mb-20">Leave take action</h4>
-												<select name="status" required class="custom-select form-control">
-													<option value="">Choose your option</option>
-				                                          <option value="1">Approved</option>
-				                                          <option value="2">Rejected</option>
-												</select>
-
-												<div class="form-group">
-													<label></label>
-													<textarea id="textarea1" name="description" class="form-control" required placeholder="Description" length="300" maxlength="300"></textarea>
-												</div>
-											</div>
-											<div class="modal-footer justify-content-center">
-												<input type="submit" class="btn btn-primary" name="update" value="Submit">
+													</div>
 											</div>
 										</div>
+										<!-- Setting Tab End -->
 									</div>
 								</div>
-  							</form>
-
-							<?php }?>
+							</div>
 						</div>
-
-						<?php $cnt++;} } ?>
-					</form>
+					</div>
 				</div>
-
 			</div>
-			
 			<?php include('includes/footer.php'); ?>
 		</div>
 	</div>
