@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2022 at 10:51 AM
+-- Generation Time: Sep 23, 2022 at 09:44 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -74,7 +74,7 @@ CREATE TABLE `tblapp` (
 --
 
 INSERT INTO `tblapp` (`id`, `full_name`, `student_number`, `sport_code`, `course`, `address`, `id_number`, `phone_number`, `next_of_kin_name`, `next_of_kin_phone`, `medical_condition`, `medical_details`, `medical_aid_name`, `medical_aid_number`, `signed_date`, `signature`, `status`, `created_at`, `updated_at`) VALUES
-(4, 'James', '217286089', 'Chess', 'IT', 'Sample Address 101', '9405276010082', '0846341443', 'leo', '0846341443', 'N/A', '', '', '', '2022-09-22T08:49', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAD3CAYAAADFcIcCAAAAAXNSR0IArs4c6QAAIABJREFUeF7tnQmslcUVx6ct7lqligQl1g0xuOOCSqFGRUVFxRoVIyqKFRckUrQ2rqEaqihEMSioKD43pK6IBvctCK4UjcQdDUrFIGK1pcRK859mvs793t3fvXe+5XeSF/Dx3W9mfjO', 0, '2022-09-22 07:18:56', '2022-09-22 07:19:01');
+(4, 'James', '217286089', 'Chess', 'IT', 'Sample Address 101', '9405276010082', '0846341443', 'John', '0846341443', 'N/A', '', '', '', '2022-09-22T08:49', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAD3CAYAAADFcIcCAAAAAXNSR0IArs4c6QAAIABJREFUeF7tnQmslcUVx6ct7lqligQl1g0xuOOCSqFGRUVFxRoVIyqKFRckUrQ2rqEaqihEMSioKD43pK6IBvctCK4UjcQdDUrFIGK1pcRK859mvs793t3fvXe+5XeSF/Dx3W9mfjO', 0, '2022-09-22 07:18:56', '2022-09-23 07:43:26');
 
 -- --------------------------------------------------------
 
@@ -132,8 +132,7 @@ INSERT INTO `tblemployees` (`emp_id`, `FirstName`, `LastName`, `EmailId`, `Passw
 (6, 'Martha', 'Arthur', 'mat@gmail.com', 'b4cc344d25a2efe540adbf2678e2304c', 'Female', '3 February, 1990', 'SD', 'N NEPO', '30', '587944255', 1, '2017-11-10 13:40:02', 'Admin', 'NO-IMAGE-AVAILABLE.jpg'),
 (7, 'Bridget', 'Gafa', 'bridget@gmail.com', 'b4cc344d25a2efe540adbf2678e2304c', 'Female', '3 February, 1990', 'SD', 'N NEPO', '1', '0596667981', 1, '2017-11-10 13:40:02', 'Admin', '1920_File_logo4.png'),
 (8, 'Anna', 'Mensah', 'an@gmail.com', '123456', 'Female', '3 February, 1990', 'SD', 'N NEPO', '30', '587944255', 1, '2017-11-10 13:40:02', 'Admin', 'NO-IMAGE-AVAILABLE.jpg'),
-(9, 'Leo', 'leo', 'leo@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Male', '12 feb 1990', 'SD', '12 DFFJKNV jd', '30', '0123456789', 1, '2022-09-26 07:23:56', 'Admin', 'NO-IMAGE-AVAILABLE.jpg'),
-(10, 'Luyolo', 'Mnganga', 'Luyololeo330@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'male', '09 February 1995', 'SD', '10 Fleet street', '30', '0846343441', 1, '2022-09-21 08:10:39', 'Admin', 'NO-IMAGE-AVAILABLE.jpg');
+(9, 'Leo', 'leo', 'leo@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Male', '12 feb 1990', 'SD', '12 DFFJKNV jd', '30', '0123456789', 1, '2022-09-26 07:23:56', 'Admin', 'NO-IMAGE-AVAILABLE.jpg');
 
 -- --------------------------------------------------------
 

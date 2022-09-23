@@ -1,6 +1,5 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
-<?php include('phpmailer.php')?>
 <?php
 
 $appid =($_GET['appid']);
@@ -14,80 +13,6 @@ if(isset($_POST['update']))
 	if ($result) {
 		$query = mysqli_query($conn,"select * from tblapp where id = '$appid' ")or die(mysqli_error());
 		$row = mysqli_fetch_array($query);
-		$user_mail =$row['student_number']."mywsu.ac.za";
-		
-		if($status==1){
-			try {
-				//Server settings
-				$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-				$mail->isSMTP();                                            //Send using SMTP
-				$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-				$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-				$mail->Username   = 'user@example.com';                     //SMTP username
-				$mail->Password   = 'secret';                               //SMTP password
-				$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-				$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-			
-				//Recipients
-				$mail->setFrom('from@example.com', 'Mailer');
-				$mail->addAddress($user_mail, 'Joe User');     //Add a recipient
-				$mail->addAddress('ellen@example.com');               //Name is optional
-				$mail->addReplyTo('info@example.com', 'Information');
-				$mail->addCC('cc@example.com');
-				$mail->addBCC('bcc@example.com');
-			
-				//Attachments
-				// $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-				// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-			
-				//Content
-				$mail->isHTML(true);                                  //Set email format to HTML
-				$mail->Subject = 'Sport Indemnity Application Approved';
-				$mail->Body    = "Good day ".$row['full_name'].", \n Please be aware that the will be trials for ".$row['sport_code']." on Tuesday afternoon at Potsdam playground.";
-				$mail->AltBody = "Good day student, \n Please be aware that the will be trials for your sport code on Tuesday afternoon at Potsdam playground.";
-			
-				$mail->send();
-				echo 'Message has been sent';
-			} catch (Exception $e) {
-				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-			}
-		}
-		if($status==2){
-			try {
-				//Server settings
-				$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-				$mail->isSMTP();                                            //Send using SMTP
-				$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-				$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-				$mail->Username   = 'user@example.com';                     //SMTP username
-				$mail->Password   = 'secret';                               //SMTP password
-				$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-				$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-			
-				//Recipients
-				$mail->setFrom('from@example.com', 'Mailer');
-				$mail->addAddress($user_mail, 'Joe User');     //Add a recipient
-				$mail->addAddress('ellen@example.com');               //Name is optional
-				$mail->addReplyTo('info@example.com', 'Information');
-				$mail->addCC('cc@example.com');
-				$mail->addBCC('bcc@example.com');
-			
-				//Attachments
-				// $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-				// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-			
-				//Content
-				$mail->isHTML(true);                                  //Set email format to HTML
-				$mail->Subject = 'Sport Indemnity Application Rejected';
-				$mail->Body    = "Good day ".$row['full_name'].", \n Please be aware that you don't make it for trials of ".$row['sport_code'].".";
-				$mail->AltBody = "Good day student, \n Please be aware that you don't make it for your sport code.";
-			
-				$mail->send();
-				echo 'Message has been sent';
-			} catch (Exception $e) {
-				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-			}
-		}
 
 		echo "<script>alert('Application Status has been Successfully Updated');</script>";
 		echo "<script type='text/javascript'> document.location = 'admin_dashboard.php'; </script>";
@@ -275,8 +200,8 @@ if(isset($_POST['update']))
 														<!-- <div class="weight-500 col-md-6">
 															<div class="form-group">
 																<label>Signature</label>
-																<div class="col-md-4 user-icon" style="background-color: lightgray;">
-																	<img src="<?php echo $row['signature']; ?>" alt="">
+																<div class="input-group">
+																<canvas id="signature-pad" width="400" height="200"><?php echo $row['signature']; ?></canvas>
 																</div>
 															</div>
 														</div> -->
