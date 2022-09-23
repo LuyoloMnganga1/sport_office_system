@@ -142,7 +142,7 @@ button#clear span {
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="inputPassword6" class="col-form-label">Identity Number:</label>
-                        <input type="text" name="id_number"  class="form-control" placeholder="Enter your ID Number" pattern="[0-9]{13}"  require="true">
+                        <input type="text" name="id_number" onchange="validateID()"  id="id_number" class="form-control" placeholder="Enter your ID Number" pattern="[0-9]{13}"  require="true">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -261,6 +261,21 @@ document.getElementById("signature").value = signaturePad.toDataURL();
 }
 });
    </script>
+<script>
+function validateID() {
+
+    var ex = /^(((\d{2}((0[13578]|1[02])(0[1-9]|[12]\d|3[01])|(0[13456789]|1[012])(0[1-9]|[12]\d|30)|02(0[1-9]|1\d|2[0-8])))|([02468][048]|[13579][26])0229))(( |-)(\d{4})( |-)(\d{3})|(\d{7}))/;
+    
+  var theIDnumber = document.getElementById("id_number").value;
+  if (ex.test(theIDnumber) == false) {
+    // alert code goes here
+    alert("Please supply a valid ID number");
+    return false;
+  }
+//   alert(theIDnumber + " a valid ID number");
+  return false;
+}
+</script>
 </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
