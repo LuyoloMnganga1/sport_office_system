@@ -51,7 +51,7 @@ if(isset($_POST['submit']))
     display: flex;
 }
 .wrapper {
-    border: 1px solid #4b00ff;
+    border: 1px solid #000000;
     border-right: 0;
 }
 canvas#signature-pad {
@@ -62,7 +62,7 @@ canvas#signature-pad {
 }
 button#clear {
     height: 100%;
-    background: #4b00ff;
+    background: #000000;
     border: 1px solid transparent;
     color: #fff;
     font-weight: 600;
@@ -223,7 +223,7 @@ button#clear span {
                 <p><br></p>
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <input type="submit" name="submit" id="save" class="btn btn-success" class="form-control">
+                        <input type="submit" name="submit" id="save" class="btn btn-dark" class="form-control">
                     </div>
                 </div>
             </td>
