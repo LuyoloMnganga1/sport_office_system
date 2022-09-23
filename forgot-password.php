@@ -66,8 +66,8 @@ if(isset($_POST['new_update']))
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
-				<a href="login.html">
-					<img src="vendors/images/logo.png" style="height: 100%;" alt="">
+				<a href="login.php">
+					<img src="vendors/images/logo2.jpg" alt="">
 				</a>
 			</div>
 		</div>
@@ -81,7 +81,7 @@ if(isset($_POST['new_update']))
 				<div class="col-md-12 col-lg-5">
 					<div class="login-box bg-white box-shadow border-radius-10">
 						<div class="login-title">
-							<h2 class="text-center text-primary"> Sport Indemnity Management Forgot Password
+							<h2 class="text-center text-dark"> Sport Indemnity Management Forgot Password
 							</h2> 
 						</div>
 						<form name="signin" method="post">
@@ -138,7 +138,7 @@ if(isset($_POST['new_update']))
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="input-group mb-0">
-									   <input class="btn btn-primary btn-lg btn-block" name="new_update" id="new_update" type="submit" value="Change Password">
+									   <input class="btn btn-dark btn-lg btn-block" name="new_update" id="new_update" type="submit" value="Change Password">
 									</div>
 								</div>
 							</div>

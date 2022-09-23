@@ -76,7 +76,7 @@ button#clear span {
   <body>
   <nav class="navbar navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="/sport_office_system/login.php">
+    <a class="navbar-brand" href="/sport_office_system/login.php" target="_blank">
         <i class="fa fa-sign-in text-light"> login</i>
     </a>
   </div>

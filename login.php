@@ -45,7 +45,7 @@ if(isset($_POST['signin']))
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>SIM</title>
+	<title>SIM | Login</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/logo.png">
@@ -91,7 +91,7 @@ if(isset($_POST['signin']))
 				<div class="col-md-6 col-lg-5">
 					<div class="login-box bg-white box-shadow border-radius-10">
 						<div class="login-title">
-							<h2 class="text-center text-primary">Welcome To Sport Indemnity Management
+							<h2 class="text-center text-dark">Welcome To Sport Indemnity Management
 							</h2>
 						</div>
 						<form name="signin" method="post">
@@ -117,7 +117,7 @@ if(isset($_POST['signin']))
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="input-group mb-0">
-									   <input class="btn btn-primary btn-lg btn-block" name="signin" id="signin" type="submit" value="Sign In">
+									   <input class="btn btn-dark btn-lg btn-block" name="signin" id="signin" type="submit" value="Sign In">
 									</div>
 								</div>
 							</div>
