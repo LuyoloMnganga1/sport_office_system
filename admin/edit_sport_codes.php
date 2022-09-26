@@ -87,7 +87,7 @@
 									</div>									
 									<div class="col-sm-12 text-right">
 										<div class="dropdown">
-										   <input class="btn btn-primary" type="submit" value="UPDATE" name="edit" id="edit">
+										   <input class="btn btn-dark" type="submit" value="UPDATE" name="edit" id="edit">
 									    </div>
 									</div>
 								   </form>

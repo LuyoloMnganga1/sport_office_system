@@ -1,3 +1,11 @@
+<?php
+require('phpmailer/PHPMailer.php');
+require('phpmailer/SMTP.php');
+require('phpmailer/Exception.php');
+use  PHPMailer\PHPMailer\PHPMailer;
+use  PHPMailer\PHPMailer\SMTP;
+use  PHPMailer\PHPMailer\Exception;
+?>
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
 <?php
@@ -13,6 +21,44 @@ if(isset($_POST['update']))
 	if ($result) {
 		$query = mysqli_query($conn,"select * from tblapp where id = '$appid' ")or die(mysqli_error());
 		$row = mysqli_fetch_array($query);
+		
+		$mail = new PHPMailer;
+		$mail->isSMTP();     
+		$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+		$mail->Port = 587;                                    // TCP port to connect to
+		$mail->SMTPAuth = true;                               // Enable SMTP authentication
+		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+
+		$mail->Username = 'zfiglan63@gmail.com';                 // SMTP username
+		$mail->Password = 'rajykjhnpdrriora';                           // SMTP password
+
+		$mail->setFrom('zfiglan63@gmail.com','WSU Sport Office');
+		$mail->addAddress($row['student_number'].'@mywsu.ac.za', $row['full_name']); 			// Add a recipient
+		$mail->addReplyTo('zfiglan63@gmail.com', 'Admin');
+
+		$mail->isHTML(true);                                  // Set email format to HTML
+		$mail->Subject = 'Sport Indemnity Responce';
+		if($status==1){ //approved
+			$mail->Body    = 'Good day'.$row['full_name'].',<br> We will like to infrom you that the will be a trails for <b>'.$row['sport_code'].'</b> on Wednesday next week on WSU Potsdam playground.';
+			$mail->AltBody = 'Good day student,<br> We will like to infrom you that the will be a trails for your sport code on Wednesday next week on WSU Potsdam playground.';
+		}elseif($status==2){  // rejected
+			$mail->Body    = 'Good day'.$row['full_name'].',<br> We are sorry to infrom you that <b>you are not selected</b> to participate for <b>'.$row['sport_code'].'</b> trials taking place on Wednesday next week on WSU Potsdam playground.';
+			$mail->AltBody = 'Good day student,<br> We are sorry to infrom you that you are not selected to participate for your sport code trials taking place on Wednesday next week on WSU Potsdam playground.';
+		}else{ //pennding
+			$mail->Body    = 'Good day'.$row['full_name'].',<br> We will like to infrom you that your status for <b>'.$row['sport_code'].'</b> is still <b>pendding</b>.';
+			$mail->AltBody = 'Good day student,<br> We will like to infrom you that your status for your sport code is still <b>pendding</b>.';
+		}
+
+		$mail->addAttachment('../vendors/images/logo2.jpg');         //Add attachments
+    	$mail->addAttachment('../vendors/images/logo.png');    //Optional name
+
+		if(!$mail->send()) {
+			echo 'Message could not be sent.';
+			echo 'Mailer Error: ' . $mail->ErrorInfo;
+		} else {
+
+		}
+		$mail->smtpClose();
 
 		echo "<script>alert('Application Status has been Successfully Updated');</script>";
 		echo "<script type='text/javascript'> document.location = 'admin_dashboard.php'; </script>";
@@ -84,7 +130,7 @@ if(isset($_POST['update']))
 									<div class="tab-pane active height-100-p" id="setting" role="tabpanel">
 											<div class="profile-setting">
 													<div class="profile-edit-list row">
-														<div class="col-md-12"><h4 class="text-blue h5 mb-20">Update the application status</h4></div>
+														<div class="col-md-12"><h4 class="text-dark h5 mb-20">Update the application status</h4></div>
 														<div class="weight-500 col-md-6">
 															<div class="form-group">
 																<label>Full Name</label>
@@ -240,7 +286,7 @@ if(isset($_POST['update']))
 																</div>
 																<div class="modal-footer">
 																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-																	<button type="submit" name="update" class="btn btn-primary">Save changes</button>
+																	<button type="submit" name="update" class="btn btn-dark">Save changes</button>
 																</div>
 																</form>
 																</div>

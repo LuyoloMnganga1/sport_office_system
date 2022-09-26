@@ -32,5 +32,13 @@
 
 		gtag('config', 'UA-119386393-1');
 	</script>
+	<style>
+		.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        color: white !important;
+        background-color: #000 !important;
+        border-color: #000 !important;
+
+}
+	</style>
 </head>
 <?php include('../includes/config.php'); ?>

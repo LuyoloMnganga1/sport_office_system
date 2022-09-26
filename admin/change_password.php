@@ -88,7 +88,7 @@ if(isset($_POST['new_update']))
 											<div class="profile-setting">
 												<form method="POST" enctype="multipart/form-data">
 													<div class="profile-edit-list row">
-														<div class="col-md-12"><h4 class="text-blue h5 mb-20">change your password</h4></div>
+														<div class="col-md-12"><h4 class="text-dark h5 mb-20">change your password</h4></div>
 														<div class="weight-500 col-md-6">
 															<div class="form-group">
 																<label>Current Password</label>
@@ -127,7 +127,7 @@ if(isset($_POST['new_update']))
 															<div class="form-group">
 																<label></label>
 																<div class="modal-footer justify-content-center">
-																	<button class="btn btn-primary" name="new_update" id="new_update" data-toggle="modal">Save & &nbsp;Update</button>
+																	<button class="btn btn-dark" name="new_update" id="new_update" data-toggle="modal">Save & &nbsp;Update</button>
 																</div>
 															</div>
 														</div>

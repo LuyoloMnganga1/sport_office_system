@@ -74,7 +74,7 @@
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
 						<div class="pull-left">
-							<h4 class="text-blue h4">Edit Staff</h4>
+							<h4 class="text-dark h4">Edit Staff</h4>
 							<p class="mb-20"></p>
 						</div>
 					</div>
@@ -187,7 +187,7 @@
 										<div class="form-group">
 											<label style="font-size:16px;"><b></b></label>
 											<div class="modal-footer justify-content-center">
-												<button class="btn btn-primary" name="add_staff" id="add_staff" data-toggle="modal">Update&nbsp;Staff</button>
+												<button class="btn btn-dark" name="add_staff" id="add_staff" data-toggle="modal">Update&nbsp;Staff</button>
 											</div>
 										</div>
 									</div>

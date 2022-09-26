@@ -63,25 +63,7 @@ if (isset($_GET['delete'])) {
 						</div>
 					</div>
 				</div>
-				<!-- <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-					<div class="card-box height-100-p widget-style3">
-
-						<?php 
-						 $query_reg_staff = mysqli_query($conn,"select * from tblemployees where role = 'Staff' ")or die(mysqli_error());
-						 $count_reg_staff = mysqli_num_rows($query_reg_staff);
-						 ?>
-
-						<div class="d-flex flex-wrap">
-							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($count_reg_staff); ?></div>
-								<div class="font-14 text-secondary weight-500">Staffs</div>
-							</div>
-							<div class="widget-icon">
-								<div class="icon" data-color="#09cc06"><span class="icon-copy fa fa-hourglass"></span></div>
-							</div>
-						</div>
-					</div>
-				</div> -->
+				
 				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
 					<div class="card-box height-100-p widget-style3">
 
@@ -101,30 +83,12 @@ if (isset($_GET['delete'])) {
 						</div>
 					</div>
 				</div>
-				<!-- <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-					<div class="card-box height-100-p widget-style3">
-
-						<?php 
-						 $query_reg_admin = mysqli_query($conn,"select * from tblemployees where role = 'Admin' ")or die(mysqli_error());
-						 $count_reg_admin = mysqli_num_rows($query_reg_admin);
-						 ?>
-
-						<div class="d-flex flex-wrap">
-							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo($count_reg_admin); ?></div>
-								<div class="font-14 text-secondary weight-500">Administrators</div>
-							</div>
-							<div class="widget-icon">
-								<div class="icon" data-color="#ff5b5b"><i class="icon-copy fa fa-hourglass-o" aria-hidden="true"></i></div>
-							</div>
-						</div>
-					</div>
-				</div> -->
+				
 			</div>
 
 			<div class="card-box mb-30">
 				<div class="pd-20">
-						<h2 class="text-blue h4">ALL EMPLOYEES</h2>
+						<h2 class="text-dark h4">ALL EMPLOYEES</h2>
 					</div>
 				<div class="pb-20">
 					<table class="data-table table stripe hover nowrap">

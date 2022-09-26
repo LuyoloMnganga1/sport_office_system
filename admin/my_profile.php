@@ -113,7 +113,7 @@ if (isset($_POST["update_image"])) {
 													</div>
 												</div>
 												<div class="modal-footer">
-													<input type="submit" name="update_image" value="Update" class="btn btn-primary">
+													<input type="submit" name="update_image" value="Update" class="btn btn-dark">
 													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 												</div>
 											</div>
@@ -124,7 +124,7 @@ if (isset($_POST["update_image"])) {
 							<h5 class="text-center h5 mb-0"><?php echo $row['FirstName']. " " .$row['LastName']; ?></h5>
 							<p class="text-center text-muted font-14"><?php echo $row['DepartmentName']; ?></p>
 							<div class="profile-info">
-								<h5 class="mb-20 h5 text-blue">Contact Information</h5>
+								<h5 class="mb-20 h5 text-dark">Contact Information</h5>
 								<ul>
 									<li>
 										<span>Email Address:</span>
@@ -161,7 +161,7 @@ if (isset($_POST["update_image"])) {
 											<div class="profile-setting">
 												<form method="POST" enctype="multipart/form-data">
 													<div class="profile-edit-list row">
-														<div class="col-md-12"><h4 class="text-blue h5 mb-20">Edit Your Personal Setting</h4></div>
+														<div class="col-md-12"><h4 class="text-dark h5 mb-20">Edit Your Personal Setting</h4></div>
 
 														<?php
 														$query = mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id' ")or die(mysqli_error());
@@ -248,7 +248,7 @@ if (isset($_POST["update_image"])) {
 															<div class="form-group">
 																<label></label>
 																<div class="modal-footer justify-content-center">
-																	<button class="btn btn-primary" name="new_update" id="new_update" data-toggle="modal">Save & &nbsp;Update</button>
+																	<button class="btn btn-dark" name="new_update" id="new_update" data-toggle="modal">Save & &nbsp;Update</button>
 																</div>
 															</div>
 														</div>
