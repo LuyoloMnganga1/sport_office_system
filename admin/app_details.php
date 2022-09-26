@@ -33,7 +33,7 @@ if(isset($_POST['update']))
 		$mail->Password = 'rajykjhnpdrriora';                           // SMTP password
 
 		$mail->setFrom('zfiglan63@gmail.com','WSU Sport Office');
-		$mail->addAddress($row['student_number'].'@mywsu.ac.za', $row['full_name']); 			// Add a recipient
+		$mail->addAddress($row['email'], $row['full_name']); 			// Add a recipient
 		$mail->addReplyTo('zfiglan63@gmail.com', 'Admin');
 
 		$mail->isHTML(true);                                  // Set email format to HTML
@@ -256,7 +256,7 @@ if(isset($_POST['update']))
 															<div class="form-group">
 																<label></label>
 																<div class="modal-footer justify-content-center">
-																	<button class="btn btn-primary" name="new_update" data-toggle="modal" data-target="#exampleModal">Update</button>
+																	<button class="btn btn-dark" name="new_update" data-toggle="modal" data-target="#exampleModal">Update</button>
 																</div>
 															</div>
 														</div>

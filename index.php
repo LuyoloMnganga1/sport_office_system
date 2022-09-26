@@ -5,6 +5,7 @@ if(isset($_POST['submit']))
 { 
     $full_name=$_POST['full_name'];
     $student_number=$_POST['student_number'];
+    $email =$_POST['email'];
     $sport_code=$_POST['sport_code'];
     $course=$_POST['course'];
     $address=$_POST['address'];
@@ -21,9 +22,9 @@ if(isset($_POST['submit']))
     $created_at=date('Y-m-d H:i:s', time());
     $updated_at=date('Y-m-d H:i:s', time());
         
-    mysqli_query($conn,"INSERT INTO tblapp (full_name, student_number, sport_code, course, address, id_number, phone_number, next_of_kin_name,
+    mysqli_query($conn,"INSERT INTO tblapp (full_name, student_number, email, sport_code, course, address, id_number, phone_number, next_of_kin_name,
      next_of_kin_phone, medical_condition, medical_details, medical_aid_name, medical_aid_number, signed_date, signature,
-     created_at, updated_at) VALUES ('$full_name','$student_number','$sport_code','$course','$address','$id_number','$phone_number',
+     created_at, updated_at) VALUES ('$full_name','$student_number','$email','$sport_code','$course','$address','$id_number','$phone_number',
      '$next_of_kin_name','$next_of_kin_phone','$medical_condition','$medical_details','$medical_aid_name','$medical_aid_number','$signed_date','$signature',
      '$created_at','$updated_at')") or die(mysqli_error());
      echo "<script>window.location = 'thank_you.php'; </script>";
@@ -108,6 +109,12 @@ button#clear span {
                     <div class="form-group">
                         <label for="inputPassword6" class="col-form-label">Student Number:</label>
                         <input type="text" class="form-control" name="student_number" id="student_number" require="true" onchange="checkInp()" pattern="[0-9]{9}"  placeholder="Enter your student number">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="inputPassword6" class="col-form-label">Email Address:</label>
+                        <input type="email" class="form-control" name="email" id="student_number" require="true"   placeholder="Enter your email address">
                     </div>
                 </div>
                 <div class="col-lg-6">
