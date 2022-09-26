@@ -29,7 +29,7 @@
                             <p class="text-dark">We appreciate your time in completing the  sport indemnify Form
                             <br>
                             <br>
-                            Your form has been successfully submitted. Regarding your application, correspondence will be sent via student email.
+                            Your form has been successfully submitted. Regarding your application, correspondence will be sent via your email.
                             <br>
                             <br>
                            Thank you for your time!</p>
