@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2022 at 09:44 AM
+-- Generation Time: Sep 26, 2022 at 10:34 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -51,6 +51,7 @@ CREATE TABLE `tblapp` (
   `id` int(11) NOT NULL,
   `full_name` varchar(225) NOT NULL,
   `student_number` varchar(225) NOT NULL,
+  `email` varchar(225) NOT NULL,
   `sport_code` varchar(225) NOT NULL,
   `course` varchar(225) NOT NULL,
   `address` varchar(225) NOT NULL,
@@ -68,13 +69,6 @@ CREATE TABLE `tblapp` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tblapp`
---
-
-INSERT INTO `tblapp` (`id`, `full_name`, `student_number`, `sport_code`, `course`, `address`, `id_number`, `phone_number`, `next_of_kin_name`, `next_of_kin_phone`, `medical_condition`, `medical_details`, `medical_aid_name`, `medical_aid_number`, `signed_date`, `signature`, `status`, `created_at`, `updated_at`) VALUES
-(4, 'James', '217286089', 'Chess', 'IT', 'Sample Address 101', '9405276010082', '0846341443', 'John', '0846341443', 'N/A', '', '', '', '2022-09-22T08:49', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAD3CAYAAADFcIcCAAAAAXNSR0IArs4c6QAAIABJREFUeF7tnQmslcUVx6ct7lqligQl1g0xuOOCSqFGRUVFxRoVIyqKFRckUrQ2rqEaqihEMSioKD43pK6IBvctCK4UjcQdDUrFIGK1pcRK859mvs793t3fvXe+5XeSF/Dx3W9mfjO', 0, '2022-09-22 07:18:56', '2022-09-23 07:43:26');
 
 -- --------------------------------------------------------
 
@@ -208,7 +202,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `tblapp`
 --
 ALTER TABLE `tblapp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `tbldepartments`
