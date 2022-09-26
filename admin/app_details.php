@@ -45,8 +45,8 @@ if(isset($_POST['update']))
 			$mail->Body    = 'Good day '.$row['full_name'].',<br> We are sorry to infrom you that <b>you are not selected</b> to participate for <b>'.$row['sport_code'].'</b> trials taking place on Wednesday next week on WSU Potsdam playground.';
 			$mail->AltBody = 'Good day student,<br> We are sorry to infrom you that you are not selected to participate for your sport code trials taking place on Wednesday next week on WSU Potsdam playground.';
 		}else{ //pennding
-			$mail->Body    = 'Good day '.$row['full_name'].',<br> We will like to infrom you that your status for <b>'.$row['sport_code'].'</b> is still <b>pendding</b>.';
-			$mail->AltBody = 'Good day student,<br> We will like to infrom you that your status for your sport code is still <b>pendding</b>.';
+			$mail->Body    = 'Good day '.$row['full_name'].',<br> We will like to infrom you that your application status for <b>'.$row['sport_code'].' sport code </b> is still <b>pendding</b>.';
+			$mail->AltBody = 'Good day student,<br> We will like to infrom you that your application status for your sport code is still <b>pendding</b>.';
 		}
 
 		$mail->addAttachment('../vendors/images/logo2.jpg');         //Add attachments
