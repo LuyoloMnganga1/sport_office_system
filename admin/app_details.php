@@ -149,6 +149,14 @@ if(isset($_POST['update']))
 														</div>
 														<div class="weight-500 col-md-6">
 															<div class="form-group">
+																<label>Email Address</label>
+																<div class="input-group">
+                                                                    <input type="email" name="email" class="form-control" readonly value="<?php echo $row['email']; ?>">
+                                                                </div>
+															</div>
+														</div>
+														<div class="weight-500 col-md-6">
+															<div class="form-group">
 																<label>Sport Code </label>
 																<div class="input-group">
                                                                     <input type="text" name="sport_code" class="form-control" readonly value="<?php echo $row['sport_code']; ?>">
