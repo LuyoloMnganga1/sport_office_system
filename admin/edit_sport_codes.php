@@ -17,7 +17,9 @@
  if(isset($_POST['edit']))
 {
 	 $sport_name=$_POST['sport_name'];
-    $result = mysqli_query($conn,"update tblsportcodes set sport_name='$sport_name' where id = '$get_id' ");
+	 $trail_date=$_POST['trail_date'];
+	 $trail_time =$_POST['trail_time'];
+    $result = mysqli_query($conn,"update tblsportcodes set sport_name='$sport_name', trail_date='$trail_date', trail_time='$trail_time' where id = '$get_id' ");
     if ($result) {
      	echo "<script>alert('Record Successfully Updated');</script>";
      	echo "<script type='text/javascript'> document.location = 'sport_codes.php'; </script>";
@@ -84,6 +86,18 @@
 												<input name="sport_name" type="text" class="form-control" required="true" autocomplete="off" value="<?php echo $row['sport_name']; ?>">
 											</div>
 										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label >Sport Code trail date</label>
+												<input name="trail_date" type="date" class="form-control" required="true" autocomplete="off" value="<?php echo $row['trail_date']; ?>">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label >Sport Code trail time</label>
+												<input name="trail_time" type="time" class="form-control" required="true" autocomplete="off" value="<?php echo $row['trail_time']; ?>">
+											</div>
+										</div>
 									</div>									
 									<div class="col-sm-12 text-right">
 										<div class="dropdown">
@@ -104,6 +118,8 @@
 										<tr>
 										<th class="table-plus">#</th>
 											<th class="table-plus">SPORT CODE</th>
+											<th class="table-plus">TRAIL DATE</th>
+											<th class="table-plus">TRAIL TIME</th>
 											<th class="datatable-nosort">ACTION</th>
 										</tr>
 										</thead>
@@ -121,7 +137,9 @@
 
 											<tr>
 												<td> <?php echo htmlentities($result->id);?></td>
-	                                            <td><?php echo htmlentities($result->sport_name);?></td>	                                
+	                                            <td><?php echo htmlentities($result->sport_name);?></td>	
+												<td> <?php echo htmlentities($result->trail_date);?></td>
+												<td> <?php echo htmlentities($result->trail_time);?></td>                                
 												<td>
 													<div class="table-actions">
 														<a href="sport_codes.php?delete=<?php echo htmlentities($result->id);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>

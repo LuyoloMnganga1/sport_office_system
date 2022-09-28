@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2022 at 10:34 AM
+-- Generation Time: Sep 28, 2022 at 05:01 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -88,7 +88,7 @@ CREATE TABLE `tbldepartments` (
 --
 
 INSERT INTO `tbldepartments` (`id`, `DepartmentName`, `DepartmentShortName`, `CreationDate`) VALUES
-(2, ' Sport Department', 'SD', '2017-11-01 07:19:37');
+(1, ' Sport Department', 'SD', '2017-11-01 07:19:37');
 
 -- --------------------------------------------------------
 
@@ -136,23 +136,25 @@ INSERT INTO `tblemployees` (`emp_id`, `FirstName`, `LastName`, `EmailId`, `Passw
 
 CREATE TABLE `tblsportcodes` (
   `id` int(11) NOT NULL,
-  `sport_name` varchar(225) NOT NULL
+  `sport_name` varchar(225) NOT NULL,
+  `trail_date` date NOT NULL DEFAULT current_timestamp(),
+  `trail_time` time NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tblsportcodes`
 --
 
-INSERT INTO `tblsportcodes` (`id`, `sport_name`) VALUES
-(1, 'Chess'),
-(2, 'Table tennis'),
-(3, 'Aerobics'),
-(4, 'Boxing'),
-(5, 'Pool'),
-(6, 'Ultimate Frisbee'),
-(7, 'Tennis'),
-(8, 'Handball'),
-(9, 'Softball');
+INSERT INTO `tblsportcodes` (`id`, `sport_name`, `trail_date`, `trail_time`) VALUES
+(1, 'Chess', '2022-09-28', '12:00:00'),
+(2, 'Table tennis', '2022-09-28', '12:15:00'),
+(3, 'Aerobics', '2022-09-28', '12:00:00'),
+(4, 'Boxing', '2022-09-28', '13:00:00'),
+(5, 'Pool', '2022-09-28', '08:00:00'),
+(6, 'Ultimate Frisbee', '2022-09-28', '08:00:00'),
+(7, 'Tennis', '2022-09-28', '09:00:00'),
+(8, 'Handball', '2022-09-28', '11:00:00'),
+(9, 'Softball', '2022-09-28', '11:30:00');
 
 --
 -- Indexes for dumped tables
@@ -208,7 +210,7 @@ ALTER TABLE `tblapp`
 -- AUTO_INCREMENT for table `tbldepartments`
 --
 ALTER TABLE `tbldepartments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tblemployees`

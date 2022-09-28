@@ -17,6 +17,8 @@
  if(isset($_POST['add']))
 {
 	 $sport_name=$_POST['sport_name'];
+	 $trail_date=$_POST['trail_date'];
+	 $trail_time =$_POST['trail_time'];
      $query = mysqli_query($conn,"select * from tblsportcodes where sport_name = '$sport_name'")or die(mysqli_error());
 	 $count = mysqli_num_rows($query);
      
@@ -24,8 +26,8 @@
      	echo "<script>alert('Sport code Already exist');</script>";
       }
       else{
-        $query = mysqli_query($conn,"insert into tblsportcodes (sport_name)
-  		 values ('$sport_name')      
+        $query = mysqli_query($conn,"insert into tblsportcodes (sport_name,trail_date,trail_time)
+  		 values ('$sport_name','$trail_date','$trail_time')      
 		") or die(mysqli_error()); 
 
 		if ($query) {
@@ -90,6 +92,18 @@
 												<input name="sport_name" type="text" class="form-control" required="true" autocomplete="off">
 											</div>
 										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label >Sport Code trail date</label>
+												<input name="trail_date" type="date" class="form-control" required="true" autocomplete="off">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label >Sport Code trail time</label>
+												<input name="trail_time" type="time" class="form-control" required="true" autocomplete="off">
+											</div>
+										</div>
 									</div>									
 									<div class="col-sm-12 text-right">
 										<div class="dropdown">
@@ -110,6 +124,8 @@
 										<tr>
 											<th class="table-plus">#</th>
 											<th class="table-plus">SPORT CODE</th>
+											<th class="table-plus">TRAIL DATE</th>
+											<th class="table-plus">TRAIL TIME</th>
 											<th class="datatable-nosort">ACTION</th>
 										</tr>
 										</thead>
@@ -128,6 +144,8 @@
 											<tr>
 											<td> <?php echo htmlentities($result->id);?></td>
 												<td> <?php echo htmlentities($result->sport_name);?></td>
+												<td> <?php echo htmlentities($result->trail_date);?></td>
+												<td> <?php echo htmlentities($result->trail_time);?></td>
 												<td>
 													<div class="table-actions">
 														<a href="edit_sport_codes.php?edit=<?php echo htmlentities($result->id);?>" data-color="#265ed7"><i class="icon-copy dw dw-edit2"></i></a>

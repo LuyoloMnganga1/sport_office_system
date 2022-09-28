@@ -21,9 +21,12 @@ if(isset($_POST['update']))
 	if ($result) {
 		$query = mysqli_query($conn,"select * from tblapp where id = '$appid' ")or die(mysqli_error());
 		$row = mysqli_fetch_array($query);
+		$sport=$row['sport_code'];
+		$finder=mysqli_query($conn,"select * from tblsportcodes where sport_name like %'$sport'%")or die(mysqli_error());
+		$record=mysqli_fetch_array($finder);
 		
 		$mail = new PHPMailer;
-		$mail->isSMTP();     
+		$mail->isSMTP();
 		$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 		$mail->Port = 587;                                    // TCP port to connect to
 		$mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -40,11 +43,11 @@ if(isset($_POST['update']))
 		$mail->isHTML(true);                                  // Set email format to HTML
 		$mail->Subject = 'Sport Indemnity Responce';
 		if($status==1){ //approved
-			$mail->Body    = 'Good day '.$row['full_name'].',<br> We will like to infrom you that the will be a trails for <b>'.$row['sport_code'].'</b> on Wednesday next week on WSU Potsdam playground.';
-			$mail->AltBody = 'Good day student,<br> We will like to infrom you that the will be a trails for your sport code on Wednesday next week on WSU Potsdam playground.';
+			$mail->Body    = 'Good day '.$row['full_name'].',<br> We will like to infrom you that the will be a trails for <b>'.$row['sport_code'].'</b> on '.$record['trail_date'].' at '.$record['trail_time'] .' in WSU Potsdam playground.';
+			$mail->AltBody = 'Good day student,<br> We will like to infrom you that the will be a trails for your sport code on '.$record['trail_date'].' at '.$record['trail_time'] .' in WSU Potsdam playground.';
 		}elseif($status==2){  // rejected
-			$mail->Body    = 'Good day '.$row['full_name'].',<br> We are sorry to infrom you that <b>you are not selected</b> to participate for <b>'.$row['sport_code'].'</b> trials taking place on Wednesday next week on WSU Potsdam playground.';
-			$mail->AltBody = 'Good day student,<br> We are sorry to infrom you that you are not selected to participate for your sport code trials taking place on Wednesday next week on WSU Potsdam playground.';
+			$mail->Body    = 'Good day '.$row['full_name'].',<br> We are sorry to infrom you that <b>you are not selected</b> to participate for <b>'.$row['sport_code'].'</b> trials taking place on '.$record['trail_date'].' at '.$record['trail_time'] .' in WSU Potsdam playground.';
+			$mail->AltBody = 'Good day student,<br> We are sorry to infrom you that you are not selected to participate for your sport code trials taking place on '.$record['trail_date'].' at '.$record['trail_time'] .' in WSU Potsdam playground.';
 		}else{ //pennding
 			$mail->Body    = 'Good day '.$row['full_name'].',<br> We will like to infrom you that your application status for <b>'.$row['sport_code'].' sport code </b> is still <b>pendding</b>.';
 			$mail->AltBody = 'Good day student,<br> We will like to infrom you that your application status for your sport code is still <b>pendding</b>.';
