@@ -38,6 +38,7 @@ if(isset($_POST['update']))
 		$mail->setFrom('zfiglan63@gmail.com','WSU Sport Office');
 		$mail->addAddress($row['email'], $row['full_name']); 			// Add a recipient
 		$mail->addAddress($row['student_number'].'@wsu.ac.za', $row['full_name']); 			// Add a recipient
+		$mail->addAddress($row['student_number'].'@mywsu.ac.za', $row['full_name']); 			// Add a recipient
 		$mail->addReplyTo('zfiglan63@gmail.com', 'Admin');
 
 		$mail->isHTML(true);                                  // Set email format to HTML
