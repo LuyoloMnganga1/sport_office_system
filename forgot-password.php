@@ -4,11 +4,10 @@ include('includes/config.php');
 if(isset($_POST['new_update']))
 {
 	$username=$_POST['username'];
-	$current_password=md5($_POST['current_password']);
 	$new_password=md5($_POST['new_password']);   
 	$confirm_new_password=md5($_POST['confirm_new_password']);  
     
-    $sql ="SELECT * FROM tblemployees where EmailId ='$username' AND Password ='$current_password'";
+    $sql ="SELECT * FROM tblemployees where EmailId ='$username'";
 	$query= mysqli_query($conn, $sql);
 	$count = mysqli_num_rows($query);
 	if($count <= 0)
@@ -93,17 +92,6 @@ if(isset($_POST['new_update']))
 																	<div class="input-group-append custom">
 																		<span class="input-group-text"><i class="icon-copy fa fa-envelope-o" aria-hidden="true"></i></span>
 																	</div>
-                                                                </div>
-															</div>
-														</div>
-						<div class="weight-500 col-md-12">
-															<div class="form-group">
-																<label>Current Password</label>
-															     <div class="input-group">
-                                                                    <input type="password" name="current_password" class="form-control pwd" placeholder="Enter your current password">
-                                                                    <span class="input-group-btn">
-                                                                    <button class="btn btn-dark form-control reveal" type="button"><i class="fa fa-eye text-light"></i></button>
-                                                                    </span>
                                                                 </div>
 															</div>
 														</div>

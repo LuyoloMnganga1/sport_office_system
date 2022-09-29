@@ -22,7 +22,7 @@ if(isset($_POST['update']))
 		$query = mysqli_query($conn,"select * from tblapp where id = '$appid' ")or die(mysqli_error());
 		$row = mysqli_fetch_array($query);
 		$sport=$row['sport_code'];
-		$finder=mysqli_query($conn,"select * from tblsportcodes where sport_name like %'$sport'%")or die(mysqli_error());
+		$finder=mysqli_query($conn,"select * from tblsportcodes where sport_name ='$sport'")or die(mysqli_error());
 		$record=mysqli_fetch_array($finder);
 		
 		$mail = new PHPMailer;
