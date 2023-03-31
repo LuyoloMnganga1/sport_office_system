@@ -32,14 +32,14 @@ if(isset($_POST['update']))
 		$mail->SMTPAuth = true;                               // Enable SMTP authentication
 		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 
-		$mail->Username = 'zfiglan63@gmail.com';                 // SMTP username
-		$mail->Password = 'rajykjhnpdrriora';                           // SMTP password
+		$mail->Username = 'username@gmail.com';                 // SMTP username
+		$mail->Password = 'yourpassword';                           // SMTP password
 
-		$mail->setFrom('zfiglan63@gmail.com','WSU Sport Office');
+		$mail->setFrom('username@gmail.com','WSU Sport Office');
 		$mail->addAddress($row['email'], $row['full_name']); 			// Add a recipient
 		$mail->addAddress($row['student_number'].'@wsu.ac.za', $row['full_name']); 			// Add a recipient
 		$mail->addAddress($row['student_number'].'@mywsu.ac.za', $row['full_name']); 			// Add a recipient
-		$mail->addReplyTo('zfiglan63@gmail.com', 'Admin');
+		$mail->addReplyTo('username@gmail.com', 'Admin');
 
 		$mail->isHTML(true);                                  // Set email format to HTML
 		$mail->Subject = 'Sport Indemnity Responce';
